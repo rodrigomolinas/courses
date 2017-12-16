@@ -1,0 +1,18 @@
+{
+  "name": "rocket-shop",
+  "version": "1.0.0",
+  "description": "A crowd-sourced subscription tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "author": "Rodrigo Molinas",
+  "license": "ISC",
+  "devDependencies": {
+    "sinon": "^4.1.3"
+  },
+  "dependencies": {
+    "moment": "^2.19.4",
+    "mocha": "^4.0.1"
+  }
+}
