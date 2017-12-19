@@ -15,18 +15,10 @@ describe 'The Review Process', ->
 				weight: 180
 			}
 			
-		review = new ReviewProcess()
-		validationSpy = sinon.spy()
-		missionSpy = sinon.spy()
-		roleAvailableSpy = sinon.spy()
-		roleCompatibleSpy = sinon.spy()
+		review = new ReviewProcess({ application: validApp })
 
 		before((done) ->
-			review.on 'validated', validationSpy
-			review.on 'mission-selected', missionSpy
-			review.on 'role-available', roleAvailableSpy
-			review.on 'role-compatible', roleCompatibleSpy
-			review.processApplication  validApp, (err, result) ->
+			review.processApplication  (err, result) ->
 				decision = result
 				done()
 		)
@@ -35,13 +27,13 @@ describe 'The Review Process', ->
 			assert decision.success, decision.message
 		
 		it 'ensures the application is valid', ->
-			assert validationSpy.called
+			assert decision.validated
 		
 		it 'ensures the mission is selected', ->
-			assert missionSpy.called
+			assert decision.mission
 
 		it 'ensures a role is available', ->
-			assert roleAvailableSpy.called
+			assert decision.roleAvailable
 
 		it 'ensures the role is compatible', ->
-			assert roleCompatibleSpy.called
+			assert decision.roleCompatible
